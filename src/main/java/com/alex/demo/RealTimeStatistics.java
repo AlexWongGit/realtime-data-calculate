@@ -25,7 +25,7 @@ public class RealTimeStatistics {
                 .groupByKey()
                 .count(Materialized.as("dimension-metrics"));
 
-        // 在这里可以添加更多的统计逻辑，如基于指标的聚合等
+        // 在这里可以添加更多的统计逻辑，如基于指标的求和平均值聚合等
 
         dimensionMetrics.toStream().foreach((key, value) -> {
             // 将统计结果推送到前端可视化库
@@ -43,7 +43,6 @@ public class RealTimeStatistics {
 
     private static String extractDimension(String data) {
         // 从数据中提取维度信息
-        // 这里可以根据你的数据格式和需求进行维度信息提取
         // 假设提取的维度信息为 "dimension"
         return "dimension";
     }
