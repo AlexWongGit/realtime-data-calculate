@@ -28,9 +28,9 @@ public class SendMsg {
                 float lc = 30+20*rand.nextFloat();
                 float lou = 4+rand.nextFloat();
                 // 利欧股票成交价格
-                ProducerRecord<String, Float> lousend = new ProducerRecord<String, Float>("play01", "002131", lou);
+                ProducerRecord<String, Float> lousend = new ProducerRecord<String, Float>("模拟主题", "002131", lou);
                 // 浪潮股票成交价格
-                ProducerRecord<String, Float> lcsend = new ProducerRecord<String, Float>("play01", "000977", lc);
+                ProducerRecord<String, Float> lcsend = new ProducerRecord<String, Float>("模拟主题", "000977", lc);
                 prod.send(lcsend);
                 Thread.sleep(250);
                 prod.send(lousend);

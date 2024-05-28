@@ -15,7 +15,6 @@ import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.*;
 import org.apache.kafka.streams.state.WindowStore;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import redis.clients.jedis.Jedis;
 
 import java.time.Duration;
@@ -49,7 +48,6 @@ import java.util.concurrent.CountDownLatch;
  */
 public class CountPrice {
 
-    private StringRedisTemplate stringRedisTemplate;
 
     public static void main(String[] args) {
         Properties prop = new Properties();
@@ -61,7 +59,7 @@ public class CountPrice {
         // prop.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG,0);
         final StreamsBuilder builder = new StreamsBuilder();
         // 计算的拓扑结构
-        KStream<String,Float> play01 = builder.stream("play01");
+        KStream<String,Float> play01 = builder.stream("模拟主题");
         KTable<Windowed<String>, Agg> tab = play01.groupByKey()
                 .windowedBy(TimeWindows.of(Duration.ofSeconds(2)))
                 .aggregate(
